@@ -1,0 +1,82 @@
+    1  clear
+    2  ls
+    3  sudo apt update
+    4  sudo apt install -y python3-pip python3-dev nginx
+    5  sudo pip3 install virtualenv
+    6  ls
+    7  mkdir ~/project
+    8  cd ~/project
+    9  virtualenv env
+   10  source env/bin/activate
+   11  git clone https://github.com/robosulthan/dev.git
+   12  cd dev/
+   13  sh upd.sh
+   14  pip install -r requirements.txt
+   15  echo "export SECRET_KEY='$(openssl rand -hex 40)'" > .DJANGO_SECRET_KEY
+   16  source .DJANGO_SECRET_KEY
+   17  python manage.py migrate
+   18  python -m pip install gunicorn
+   19  sudo mkdir -pv /var/{log,run}/gunicorn/
+   20  sudo chown -cR ubuntu:ubuntu /var/{log,run}/gunicorn/
+   21  sudo rm -f /etc/nginx/sites-available/default
+   22  sudo rm -f /etc/nginx/sites-enabled/default
+   23  sudo cp files/ikSite /etc/nginx/sites-available/
+   24  sudo ln -s /etc/nginx/sites-available/ikSite /etc/nginx/sites-enabled/
+   25  sudo mkdir -pv /var/www/iksaan.com/static/
+   26  sudo chown -cR ubuntu:ubuntu /var/www/iksaan.com/
+   27  python manage.py collectstatic
+   28  gunicorn -c config/gunicorn/dev.py
+   29  sudo systemctl restart nginx
+   30  cat .DJANGO_SECRET_KEY
+   31  python manage.py check
+   32  nohup python manage.py runserver &
+   33  ls
+   34  less /var/log/gunicorn/dev.log 
+   35  less /var/log/nginx/iksaan.error.log 
+   36  less /var/log/nginx/iksaan.access.log 
+   37  sudo lsof -n -P -i TCP:8000 -s TCP:LISTEN
+   38  ps -ef |grep gunicorn
+   39  kill -9 3148
+   40  ps -ef |grep gunicorn
+   41  jobs -l
+   42  ps -ef |grep gunicorn
+   43  kill -9 3123
+   44  ps -ef |grep gunicorn
+   45  kill -9 3304
+   46  ps -ef |grep gunicorn
+   47  python manage.py runserver 0.0.0.0:8000
+   48  python manage.py runserver 0.0.0.0:8000 &
+   49  jobs -l
+   50  cd project/dev/
+   51  ls
+   52  less nohup.out 
+   53  cd project/dev/
+   54  ls
+   55  less /var/log/gunicorn/dev.log 
+   56  less /var/log/nginx/iksaan.access.log 
+   57  less /var/log/nginx/iksaan.error.log 
+   58  ls
+   59  python manage.py runserver
+   60  clear
+   61  ls
+   62  cd project/
+   63  ls
+   64  sudo systemctl status nginx
+   65  source env/bin/activate
+   66  cd dev/
+   67  ls
+   68  echo "export SECRET_KEY='$(openssl rand -hex 40)'" > .DJANGO_SECRET_KEY
+   69  source .DJANGO_SECRET_KEY
+   70  gunicorn -c config/gunicorn/dev.py
+   71  sudo systemctl restart nginx
+   72  dmesg | grep gunicorn
+   73  sudo dmesg | grep gunicorn
+   74  less /var/log/gunicorn/dev.log 
+   75  sudo chown -cR ubuntu:ubuntu /var/{log,run}/gunicorn/
+   76  sudo mkdir -pv /var/{log,run}/gunicorn/
+   77  sudo chown -cR ubuntu:ubuntu /var/{log,run}/gunicorn/
+   78  gunicorn -c config/gunicorn/dev.py
+   79  less /var/log/gunicorn/dev.log 
+   80  vi ikSite/settings.py 
+   81  history 
+   82  history >his_May_2023.txt
