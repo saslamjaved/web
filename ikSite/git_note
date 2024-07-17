@@ -1,0 +1,5 @@
+git add <filename>
+git status
+git commit -m <"Enter comment">
+git remote set-url origin https://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@github.com/saslamjaved/web.git
+git push origin main
