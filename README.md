@@ -7,7 +7,7 @@ This example project only supports the latest version of Django.
 ```bash
 sudo apt update
 sudo apt install -y python3-pip python3-dev nginx
-sudo apt install python3.12-venv
+sudo apt install -y python3.12-venv
 mkdir ~/project
 cd ~/project
 git clone https://github.com/saslamjaved/web.git
