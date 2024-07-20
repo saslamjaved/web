@@ -1,5 +1,7 @@
 #!/usr/bin/sh
 IP1=`curl -s http://checkip.amazonaws.com`
-echo "Updatin $IP1 in settings file"
-sed -i 's/ipxxxx/'".iksaan.com\",\"$IP1"'/' ikSite/settings.py
-
+IP2=`hostname -I | awk '{print $1}'`
+echo "Updating $IP1 in settings file"
+sed -i 's/ipPUB/'".iksaan.com\",\"$IP1"'/' ikSite/settings.py
+echo "Updating $IP2 in settings file"
+sed -i 's/ipPRI/'"*.iksaan.com\",\"$IP2"'/' ikSite/settings.py
