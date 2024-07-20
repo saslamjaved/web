@@ -29,7 +29,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["ipPUB","ipPRI"]
 
-
+CSRF_TRUSTED_ORIGINS = ["https://*.iksaan.com"]
 # Application definition
 
 INSTALLED_APPS = [
